@@ -23,7 +23,7 @@ public class JDBCDemo04 {
         String sql = "select * from EMP";
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-        while ( resultSet.next()){
+        while (resultSet.next()){
             int EMPno = resultSet.getInt(1);
             String eName = resultSet.getString(2);
             String job = resultSet.getString(3);
