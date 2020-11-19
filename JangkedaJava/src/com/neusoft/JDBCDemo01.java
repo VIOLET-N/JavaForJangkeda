@@ -20,5 +20,7 @@ public class JDBCDemo01 {
         }else{
             System.out.println("失败");
         }
+        statement.close();
+        connection.close();
     }
 }
