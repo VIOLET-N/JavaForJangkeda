@@ -7,6 +7,7 @@ import com.neusoft.util.JdbcUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,8 +64,28 @@ public class BusinessDaoImpl implements BusinessDao {
     }
 
     @Override
-    public int removeBusiness(String businessName) {
-        return 0;
+    public int removeBusiness(int businessId) {
+        String sql = "delete from business where businessId=?";
+        int result = 0;
+        try {
+            connection = JdbcUtil.getConnection();
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, businessId);
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (Exception e) {
+            result = 0;
+            try {
+                connection.rollback();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            e.printStackTrace();
+        }finally {
+            JdbcUtil.close(preparedStatement, connection);
+        }
+        return result;
     }
 
     @Override

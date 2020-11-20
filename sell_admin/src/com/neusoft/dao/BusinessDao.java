@@ -10,7 +10,7 @@ public interface BusinessDao {
    // 保存商家
    public int saveBusiness(Business business);
    // 删除商家
-   public int removeBusiness(String businessName);
+   public int removeBusiness(int businessId);
    //修改
    public int supdateBusiness(Business business);
    //通过ID查询
