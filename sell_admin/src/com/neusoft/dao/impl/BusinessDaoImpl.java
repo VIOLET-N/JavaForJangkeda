@@ -180,4 +180,22 @@ public class BusinessDaoImpl implements BusinessDao {
 
         return business;
     }
+
+    @Override
+    public int updateBusinessPassword(Integer businessId,String password) {
+        int res = 0;
+        String sql = "update business set password = ? where businessId = ?";
+        try {
+            connection = JdbcUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, password);
+            preparedStatement.setInt(2, businessId);
+            res = preparedStatement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JdbcUtil.close(resultSet, preparedStatement,null);
+        }
+        return res;
+    }
 }
