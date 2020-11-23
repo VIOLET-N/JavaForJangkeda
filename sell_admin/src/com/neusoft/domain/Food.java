@@ -60,4 +60,12 @@ public class Food {
     public void setBusinessId(Integer businessId) {
         this.businessId = businessId;
     }
+
+    @Override
+    public String toString() {
+        return "食物编号=" + foodId + '\t' +
+                "名称='" + foodName + '\t' +
+                "简介='" + foodExplain + '\t' +
+                "价格=" + foodPrice;
+    }
 }
