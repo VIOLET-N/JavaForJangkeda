@@ -30,8 +30,10 @@ public class FoodViewImpl implements FoodView {
         foodPrice = input.nextDouble();
         Food food = new Food(null,foodName,foodExplain,foodPrice,businessId);
         FoodDao foodDao = new FoodDaoImpl();
-        foodDao.saveFood(food);
-        System.out.println("保存成功！");
+        int result = foodDao.saveFood(food);
+        if (result!=0)
+            System.out.println("添加成功！");
+        System.out.println("添加失败！");
     }
 
     @Override
@@ -39,17 +41,31 @@ public class FoodViewImpl implements FoodView {
         String foodName = "";
         String foodExplain = "";
         Double foodPrice = 0.0;
+        int foodId = 0;
+        System.out.println("输入食物编号：");
+        foodId = Integer.parseInt(input.next());
         System.out.println("输入修改食物名称：");
         foodName = input.next();
         System.out.println("输入修改食物简介：");
         foodExplain = input.next();
         System.out.println("输入修改食物价格（带小数点）：");
         foodPrice = input.nextDouble();
-        Food food = new Food();
+        Food food = new Food(foodId,foodName,foodExplain,foodPrice,businessId);
+        FoodDao foodDao = new FoodDaoImpl();
+        int result = foodDao.updateFood(food);
+        if (result!=0)
+            System.out.println("修改成功！");
+        System.out.println("修改失败！");
     }
 
     @Override
     public void removeFood(Integer businessId) {
-
+        System.out.println("输入想要删除食物编号");
+        int foodId = Integer.parseInt(input.next());
+        FoodDao foodDao = new FoodDaoImpl();
+        int result = foodDao.removeFood(foodId,businessId);
+        if (result!=0)
+            System.out.println("删除成功！");
+        System.out.println("删除失败");
     }
 }

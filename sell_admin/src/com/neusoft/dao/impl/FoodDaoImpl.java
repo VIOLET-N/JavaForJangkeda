@@ -87,13 +87,14 @@ public class FoodDaoImpl implements FoodDao {
     }
 
     @Override
-    public int removeFood(Integer foodId) {
+    public int removeFood(Integer foodId,Integer businessId) {
         int result = 0;
-        String sql = "delete from food where foodId=?";
+        String sql = "delete from food where foodId=? and businessId=?";
         try {
             connection = JdbcUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setInt(1,foodId);
+            preparedStatement.setInt(2,businessId);
             result = preparedStatement.executeUpdate();
             return result;
         } catch (Exception e) {

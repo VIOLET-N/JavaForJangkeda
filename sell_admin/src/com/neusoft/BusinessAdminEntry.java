@@ -30,6 +30,7 @@ public class BusinessAdminEntry {
                 switch (menu){
                     case 1:
                         System.out.println("1. 查看商家信息");
+                        businessView.listAllBusiness();
                         break;
                     case 2:
                         System.out.println("2. 修改商家信息");
