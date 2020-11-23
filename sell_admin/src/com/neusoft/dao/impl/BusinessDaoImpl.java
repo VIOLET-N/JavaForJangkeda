@@ -150,4 +150,34 @@ public class BusinessDaoImpl implements BusinessDao {
         }
         return business;
     }
+
+    @Override
+    public Business getBusinessByIdAndPassword(Integer businessId, String password) {
+        Business business = null;
+        String sql = "select * from business where businessId = ? and password = ? ";
+        try {
+            connection = JdbcUtil.getConnection();
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, businessId);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                business = new Business();
+                business.setBusinessId(resultSet.getInt("businessId"));
+                business.setPassword(resultSet.getString("password"));
+                business.setBusinessName(resultSet.getString("businessName"));
+                business.setBusinessAddress(resultSet.getString("businessAddress"));
+                business.setBusinessExplain(resultSet.getString("businessExplain"));
+                business.setStarPrice(resultSet.getDouble("starPrice"));
+                business.setDeliveryPrice(resultSet.getDouble("deliveryPrice"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            JdbcUtil.close(resultSet,preparedStatement,connection);
+        }
+
+        return business;
+    }
 }

@@ -5,7 +5,6 @@ import com.neusoft.dao.impl.BusinessDaoImpl;
 import com.neusoft.domain.Business;
 import com.neusoft.view.BusinessView;
 
-import java.lang.management.BufferPoolMXBean;
 import java.util.List;
 import java.util.Scanner;
 
@@ -46,5 +45,52 @@ public class BusinessViewlmpl implements BusinessView {
         for (Business b :list){
             System.out.println(b.getBusinessId() +"\t"+b.getBusinessName()+"\t"+b.getBusinessAddress()+"\t"+b.getBusinessExplain()+"\t"+b.getDeliveryPrice()+"\t"+b.getStarPrice());
         }
+    }
+
+    @Override
+    public void saveBusiness() {
+        System.out.println("请输入新商家的名称");
+        String businessName = input.next();
+        BusinessDao dao = new BusinessDaoImpl();
+        Business business = new Business();
+        business.setBusinessName(businessName);
+        int businessId = dao.saveBusiness(business);
+        // 根据id进行查询， 然后进行回显
+        if (businessId >0){
+            System.out.println("保存成功");
+            Business business1 = dao.getBusinessById(businessId);
+            System.out.println(business1);
+        }else {
+            System.out.println("新建商家失败");
+        }
+    }
+
+    @Override
+    public void removeBusiness() {
+        System.out.println("请输入要删除的商家id");
+        int id = input.nextInt();
+        BusinessDao dao = new BusinessDaoImpl();
+        System.out.println("确认要删除吗(y/n)");
+        if (input.next().equals("y")){
+            int i = dao.removeBusiness(id);
+            if (i == 1){
+                System.out.println("删除成功");
+            }else{
+                System.out.println("删除失败");
+            }
+        }
+    }
+
+    @Override
+    public Business login() {
+        System.out.println("请输入商家编号");
+        Integer businessId = input.nextInt();
+
+        System.out.println("请输入密码");
+        String password = input.next();
+
+        BusinessDaoImpl dao = new BusinessDaoImpl();
+
+        return dao.getBusinessByIdAndPassword(businessId,password);
     }
 }

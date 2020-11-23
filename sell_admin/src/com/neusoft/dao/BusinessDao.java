@@ -16,4 +16,6 @@ public interface BusinessDao {
    //通过ID查询
    public Business getBusinessById(Integer businessId);
 
+   public Business getBusinessByIdAndPassword(Integer businessId, String password);
+
 }
