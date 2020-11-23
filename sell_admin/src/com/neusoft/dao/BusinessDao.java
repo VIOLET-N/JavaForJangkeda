@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BusinessDao {
    // 所有商家
-   public List<Business> listBusiness();
+   public List<Business> listBusiness(String businessName, String businessAddress);
    // 保存商家
    public int saveBusiness(Business business);
    // 删除商家

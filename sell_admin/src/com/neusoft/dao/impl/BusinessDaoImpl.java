@@ -17,17 +17,24 @@ public class BusinessDaoImpl implements BusinessDao {
     ResultSet resultSet = null;
 
     @Override
-    public List<Business> listBusiness(){
+    public List<Business> listBusiness(String businessName, String businessAddress){
         ArrayList<Business> list = new ArrayList<>();
-        String sql = "select * from business";
+//        String sql = "";
+        StringBuffer stringBuffer = new StringBuffer("select * from business where 1=1");
+        if(businessName != null && !businessName.equals("")){
+            stringBuffer.append("and businessName like '%"+businessAddress+"%'");
+        }
+        if (businessAddress != null && businessAddress.equals("")){
+            stringBuffer.append("and businessAddress like '%"+businessAddress+"%'");
+        }
         try {
             connection = JdbcUtil.getConnection();
-            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement = connection.prepareStatement(stringBuffer.toString());
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()){
                 Business business = new Business();
-                String businessName = resultSet.getString(3);
-                business.setBusinessName(businessName);
+                String businessName1 = resultSet.getString(3);
+                business.setBusinessName(businessName1);
                 list.add(business);
             }
         }catch (Exception e){
