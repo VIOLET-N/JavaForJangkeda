@@ -67,14 +67,15 @@ public class FoodDaoImpl implements FoodDao {
     @Override
     public int updateFood(Food food) {
         int result = 0;
-        String sql = "update food set foodName=?,foodExplain=?,foodPrice=? where foodId=?";
+        String sql = "update food set foodName=?,foodExplain=?,foodPrice=? where businessId=? and foodid=?";
         try {
             connection = JdbcUtil.getConnection();
             preparedStatement = connection.prepareStatement(sql);
             preparedStatement.setString(1,food.getFoodName());
             preparedStatement.setString(2,food.getFoodExplain());
             preparedStatement.setDouble(3,food.getFoodPrice());
-            preparedStatement.setInt(4,food.getFoodId());
+            preparedStatement.setInt(4,food.getBusinessId());
+            preparedStatement.setInt(5,food.getFoodId());
             result = preparedStatement.executeUpdate();
             return result;
         } catch (Exception e) {

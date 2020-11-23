@@ -19,12 +19,33 @@ public class FoodViewImpl implements FoodView {
 
     @Override
     public void saveFood(Integer businessId) {
-
+        String foodName = "";
+        String foodExplain = "";
+        Double foodPrice = 0.0;
+        System.out.println("输入食物名称：");
+        foodName = input.next();
+        System.out.println("输入食物简介：");
+        foodExplain = input.next();
+        System.out.println("输入食物价格（带小数点）：");
+        foodPrice = input.nextDouble();
+        Food food = new Food(null,foodName,foodExplain,foodPrice,businessId);
+        FoodDao foodDao = new FoodDaoImpl();
+        foodDao.saveFood(food);
+        System.out.println("保存成功！");
     }
 
     @Override
     public void updateFood(Integer businessId) {
-
+        String foodName = "";
+        String foodExplain = "";
+        Double foodPrice = 0.0;
+        System.out.println("输入修改食物名称：");
+        foodName = input.next();
+        System.out.println("输入修改食物简介：");
+        foodExplain = input.next();
+        System.out.println("输入修改食物价格（带小数点）：");
+        foodPrice = input.nextDouble();
+        Food food = new Food();
     }
 
     @Override
