@@ -1,6 +1,7 @@
 package com.neusoft.redbag;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class LuckMoney {
     @Id
     @GeneratedValue
@@ -18,8 +20,5 @@ public class LuckMoney {
     private String producer;
     private String consumer;
 
-    public LuckMoney(){
-
-    }
 
 }
