@@ -1,5 +1,6 @@
 package com.neusoft.redbag;
 
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
