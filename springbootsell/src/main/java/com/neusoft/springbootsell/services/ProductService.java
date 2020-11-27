@@ -19,4 +19,9 @@ public interface ProductService {
     void increaseStock(String productId);
     // 下架
     void decreaseStock(String productId);
+
+    ProductInfo onSale(String productId);
+
+    ProductInfo offSale(String productId);
+
 }

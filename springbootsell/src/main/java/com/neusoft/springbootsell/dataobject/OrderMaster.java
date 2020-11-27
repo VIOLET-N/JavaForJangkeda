@@ -20,13 +20,13 @@ public class OrderMaster {
     @Id
     private String orderId;
     //买家名字
-    private String userName;
+    private String buyerName;
     //买家地址
     private String buyerPhone;
     //买家微信 openId
     private String buyerAddress;
     //订单id
-    private String buyerOpenId;
+    private String buyerOpenid;
     //订单总金额
     private BigDecimal orderAmount;
     //订单 状态
@@ -35,6 +35,6 @@ public class OrderMaster {
     private Integer payStatus = PayStatusEnum.WAIT.getCode();
     //创建时间
     private Date createTime;
-    //更新时间
+
     private Date updateTime;
 }
