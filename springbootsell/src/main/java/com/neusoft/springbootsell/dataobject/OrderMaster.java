@@ -1,6 +1,8 @@
 package com.neusoft.springbootsell.dataobject;
 
 
+import com.neusoft.springbootsell.enums.OrderStatusEnum;
+import com.neusoft.springbootsell.enums.PayStatusEnum;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -28,9 +30,9 @@ public class OrderMaster {
     //订单总金额
     private BigDecimal orderAmount;
     //订单 状态
-    private Integer orderStatus = 0;
+    private Integer orderStatus = OrderStatusEnum.NEW.getCode();
     //支付状态
-    private Integer payStatus = 0;
+    private Integer payStatus = PayStatusEnum.WAIT.getCode();
     //创建时间
     private Date createTime;
     //更新时间
