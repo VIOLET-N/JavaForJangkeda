@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface MasterService {
     public List<OrderMaster> findAll();
+    public void cancel(String orderId);
+    public OrderMaster findById(String orderId);
 }

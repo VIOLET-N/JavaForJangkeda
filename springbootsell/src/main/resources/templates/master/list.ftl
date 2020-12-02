@@ -54,8 +54,16 @@
                             </td>
 
                             <td>${master.createTime}</td>
-                            <td><a href="#">详情</a></td>
-                            <td><a href="#">取消订单</a></td>
+                            <td><a href="/seller/master/details?detailId=${master.buyerOpenid}&orderId=${master.orderId}">详情</a></td>
+                            <td>
+                                <#if master.orderStatus == 0>
+                                    <a href="/seller/master/cancel?orderId=${master.orderId}">取消订单</a>
+                                <#elseif master.orderStatus == 1>
+                                        完结
+                                <#else>
+
+                                </#if>
+                            </td>
                         </tr>
                     </#list>
 
