@@ -39,10 +39,22 @@
                                 <td>${productInfo.createTime}</td>
                                 <td>${productInfo.updateTime}</td>
                                 <td>
-                                    <a href="/seller/product/update?productId=${productInfo.productId}">修改</a>
+                                    <a href="/seller/product/index?productId=${productInfo.productId}">修改</a>
                                 </td>
                                 <td>
-                                    <a href="#">下架</a>
+                                    <a href="/seller/product/sale?flag=${productInfo.productStatus}&productId=${productInfo.productId}">
+                                        <#if productInfo.productStatus == 0>
+                                            下架
+                                        <#else >
+                                            上架
+                                        </#if>
+                                    </a>
+<#--                                    <#if productInfo.productStatus == 0>-->
+<#--                                        //在架，下架操作-->
+<#--                                        <a href="/seller/product/sale?flag=${productInfo.productStatus}&productId=${productInfo.productId}">下架</a>-->
+<#--                                    <#else >-->
+<#--                                        <a href="/seller/product/sale?flag=${productInfo.productStatus}&productId=${productInfo.productId}">上架</a>-->
+<#--                                    </#if>-->
                                 </td>
 
                             </tr>

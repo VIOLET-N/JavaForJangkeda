@@ -63,7 +63,7 @@ public class SellerProductController {
                                Map<String, Object> map){
         if (bindingResult.hasErrors()){
             map.put("msg", bindingResult.getFieldError().getDefaultMessage());
-            map.put("url", "/seller/product/update");
+            map.put("url", "/seller/product/index");
             return new ModelAndView("common/error");
         }
         ProductInfo productInfo = new ProductInfo();
@@ -83,5 +83,22 @@ public class SellerProductController {
         }
         map.put("url", "/seller/product/list");
         return new ModelAndView("common/success", map);
+    }
+
+    @GetMapping("/sale")
+    public ModelAndView sale(@RequestParam(value = "flag",required = false) String flag,
+                             @RequestParam(value = "productId",required = false)String productId,
+                             ModelAndView view){
+        //0在架 1下架
+        if (flag.equals("0")) {
+            System.out.println("下架flag="+flag);
+            productService.offSale(productId);
+        }
+        else {
+            System.out.println("上架flag="+flag);
+            productService.onSale(productId);
+        }
+        view.setViewName("redirect:/seller/product/list");
+        return view;
     }
 }
